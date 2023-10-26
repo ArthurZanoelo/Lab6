@@ -9,7 +9,15 @@ def encoder():
     return ''.join(password)
 
 def decoder(encoded_password):
-    pass
+    password = str(encoded_password)
+    decoded = ""
+    for i in range(0, 8):
+        value = int(password[i]) - 3
+        if value < 0:
+            value = 10 + value
+        decoded = decoded + str(value)
+    return decoded
+
 
 def main():
     user_input = int(input('Please enter an option: '))
@@ -19,7 +27,7 @@ def main():
             encoded_password = encoder()
             print('Your password has been encoded and stored!')
         elif user_input == 2:
-            decoder(encoded_password)
+            print("The encoded password is " + encoded_password + ", and the original password is " + decoder(encoded_password) +".")
         user_input = int(input('Please enter an option: '))
 
 if __name__ == '__main__':
